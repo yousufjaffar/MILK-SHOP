@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yousuf Dairy — Farm Fresh Milk, Butter &amp; Yogurt | Karachi</title>
+<link rel="icon" type="image/png" href="logo.png"> 
+<meta name="description" content="Khaalis cow, buffalo & goat milk, butter, yogurt and more — delivered fresh across Karachi. Order on WhatsApp.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="header">
+  <div class="container header-inner">
+
+    <a href="#top" class="logo">
+      <!-- CHANGED: swapped SVG logo mark for an <img> tag — replace src with your real logo file -->
+      <img src="logo.png" alt="Yousuf Dairy Logo" class="logo-img">
+      <span class="logo-text">Yousuf <em>Dairy</em></span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#products">Products</a>
+      <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a> <!-- CHANGED: new link for the Reviews section -->
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="cart-trigger" id="cartTrigger" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2l2.6 12.4A2 2 0 0 0 9 17h8.4a2 2 0 0 0 1.94-1.5L21.5 8H6"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+
+      <a href="#" class="btn btn-whatsapp header-cta" id="headerWhatsapp">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.868-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.892.526 3.66 1.44 5.167L2 22l4.963-1.404A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12.001 2zm0 18.03a8.01 8.01 0 01-4.312-1.257l-.309-.184-3.104.878.83-3.09-.201-.318A8.01 8.01 0 1120.01 12a8.02 8.02 0 01-8.009 8.03z"/></svg>
+        Order on WhatsApp
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#products">Products</a>
+    <a href="#why">Why Us</a>
+    <a href="#reviews">Reviews</a> <!-- CHANGED: new link for the Reviews section -->
+    <a href="#location">Location</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <p class="eyebrow center">Farm Fresh · Karachi</p>
+    <h1 class="center">Khaalis Doodh, Makhan &amp;<br><span class="ink">Dahi</span> — Seedha Aap Tak</h1>
+    <p class="hero-sub center">Cow, buffalo &amp; goat milk, hand-churned butter, fresh yogurt aur ghee — sab ek jagah, seedha WhatsApp par order.</p>
+    <div class="hero-actions center">
+      <a href="#products" class="btn btn-navy btn-lg">Browse Products</a>
+      <a href="#" class="btn btn-whatsapp btn-lg" id="heroWhatsapp">Order Now</a>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="container stats-inner">
+      <div class="stat"><strong>10+</strong><span>Years Serving Karachi</span></div>
+      <div class="stat"><strong>1000+</strong><span>Happy Households</span></div>
+      <div class="stat"><strong>7</strong><span>Farm Fresh Products</span></div>
+      <div class="stat"><strong>8AM</strong><span>Delivered Before</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS CAROUSEL ================= -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <!-- <p class="eyebrow">Aaj ka menu</p> -->
+        <h2 class="section-title">Our Products</h2>
+      </div>
+      <div class="carousel-arrows">
+        <button class="arrow-btn" id="arrowLeft" aria-label="Scroll left">‹</button>
+        <button class="arrow-btn" id="arrowRight" aria-label="Scroll right">›</button>
+      </div>
+    </div>
+
+    <!--
+      Each product card carries its data in data-* attributes:
+      data-id     unique key used by the cart (no spaces)
+      data-name   shown in cart items + WhatsApp message
+      data-emoji  used as the icon everywhere (card, cart, modal)
+      data-unit   shown next to the price (Litre, kg, cup, etc.)
+      data-price  number only, no "Rs." or commas
+      data-desc   shown in the Quick View modal description
+
+      To add a new product, copy one <article> block below,
+      change these attributes + the visible text/price inside,
+      and everything (cart, quick view, WhatsApp message) wires
+      itself up automatically — no other file needs editing.
+    -->
+    <div class="carousel" id="carousel">
+
+      <article class="product-card" data-id="cow-milk" data-name="Cow Milk" data-emoji="🐄" data-unit="Litre" data-price="330" data-img="cow.png" data-desc="Pure, pasteurized cow milk that's naturally nutritious — no hormones, no preservatives.">
+        <div class="card-media" data-open-quickview><img src="cow.png" alt="Cow Milk"></div>
+        <div class="card-body">
+          <h3>Cow Milk</h3>
+          <p class="card-local">Gaay ka Doodh</p>
+          <p class="card-price">Rs. 330<span>/Litre</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="buffalo-milk" data-name="Buffalo Milk" data-emoji="🐃" data-unit="Litre" data-price="390" data-img="buffalo.png" data-desc="Rich and creamy buffalo milk with higher natural fat — perfect for chai and desserts.">
+        <div class="card-media" data-open-quickview><img src="buffalo.png" alt="Buffalo Milk"></div>
+        <div class="card-body">
+          <h3>Buffalo Milk</h3>
+          <p class="card-local">Bhains ka Doodh</p>
+          <p class="card-price">Rs. 390<span>/Litre</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="goat-milk" data-name="Goat Milk" data-emoji="🐐" data-unit="Litre" data-price="480" data-img="goat.png" data-desc="Light and easily digestible — a gentle choice for kids, elders and sensitive stomachs.">
+        <div class="card-media" data-open-quickview><img src="goat.png" alt="Goat Milk"></div>
+        <div class="card-body">
+          <h3>Goat Milk</h3>
+          <p class="card-local">Bakri ka Doodh</p>
+          <p class="card-price">Rs. 480<span>/Litre</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="butter" data-name="Butter" data-emoji="🧈" data-unit="250g" data-price="650" data-img="butter.png" data-desc="Hand-churned from farm cream, unsalted and additive-free — perfect on paratha.">
+        <div class="card-media" data-open-quickview><img src="butter.png" alt="Butter"></div>
+        <div class="card-body">
+          <h3>Butter</h3>
+          <p class="card-local">Taaza Makhan</p>
+          <p class="card-price">Rs. 650<span>/250g</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="plain-yogurt" data-name="Plain Yogurt" data-emoji="🥣" data-unit="kg" data-price="400" data-img="yogurt.png" data-desc="Thick, set the traditional way from fresh milk — perfect for raita or as-is.">
+        <div class="card-media" data-open-quickview><img src="yogurt.png" alt="Plain Yogurt"></div>
+        <div class="card-body">
+          <h3>Plain Yogurt</h3>
+          <p class="card-local">Ghar Jaisa Dahi</p>
+          <p class="card-price">Rs. 400<span>/kg</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="toast" data-name="Toast" data-emoji="🍞" data-unit="cup" data-price="150" data-img="toast.png" data-desc="Freshly baked and crispy — perfect for breakfast or snacks.">
+        <div class="card-media" data-open-quickview><img src="toast.png" alt="Toast"></div>
+        <div class="card-body">
+          <h3>Toast</h3>
+          <p class="card-local">Rusk / Toast</p>
+          <p class="card-price">Rs. 150<span>/packet</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="desi-ghee" data-name="Desi Ghee" data-emoji="🍯" data-unit="500g" data-price="1800" data-img="desighee.png" data-desc="Slow-churned from fresh cream, the traditional way — no shortcuts, no blending.">
+        <div class="card-media" data-open-quickview><img src="desighee.png" alt="Desi Ghee"></div>
+        <div class="card-body">
+          <h3>Desi Ghee</h3>
+          <p class="card-local">Handmade Ghee</p>
+          <p class="card-price">Rs. 1800<span>/500g</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="bread" data-name="Bread" data-emoji="🍞" data-unit="250g" data-price="650" data-img="bread.png" data-desc="Freshly baked and soft — perfect for breakfast or snacks.">
+        <div class="card-media" data-open-quickview><img src="bread.png" alt="Bread"></div>
+        <div class="card-body">
+          <h3>Bread</h3>
+          <p class="card-local">Fresh Bread</p>
+          <p class="card-price">Rs. 130<span>/packet</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" data-action="dec">−</button>
+            <span class="qty-value">0</span>
+            <button class="qty-btn" data-action="inc">+</button>
+          </div>
+        </div>
+      </article>  
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="section section-alt" id="why">
+  <div class="container">
+    <p class="eyebrow center">Why choose us</p>
+    <h2 class="section-title center">Why We Are Good</h2>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <h3>Every Morning Fresh</h3>
+        <p>Milked at dawn, delivered same day — no day-old stock, ever.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <h3>Free Home Delivery</h3>
+        <p>Free on orders above Rs. 1000 — straight to your doorstep.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <h3>Honest Measure</h3>
+        <p>Exact weight and volume, no shortage — check it yourself.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-num">04</span>
+        <h3>No Additives</h3>
+        <p>100% natural — no mixing, no preservatives, no shortcuts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANGED: new Reviews section added between Why Us and Location -->
+<section class="section" id="reviews">
+  <div class="container">
+    <p class="eyebrow center">From our customers</p>
+    <h2 class="section-title center">Trusted Across Karachi Homes</h2>
+
+    <div class="review-grid">
+      <blockquote class="review-card">
+        <p>"Doodh ka taste bilkul different hai — bachon ke liye yehi mangwati hoon ab."</p>
+        <cite>— Ayesha, Gulshan-e-Iqbal</cite>
+      </blockquote>
+      <blockquote class="review-card">
+        <p>"WhatsApp pe order karna itna easy hai. Time pe hamesha pohonch jata hai."</p>
+        <cite>— Bilal, North Nazimabad</cite>
+      </blockquote>
+      <blockquote class="review-card">
+        <p>"Butter aur dahi dono fresh milte hain, packaging bhi neat hoti hai."</p>
+        <cite>— Sana, PECHS</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOCATION / MAP ================= -->
+<section class="section" id="location">
+  <div class="container">
+    <p class="eyebrow center">Find us</p>
+    <h2 class="section-title center">Delivery Areas &amp; Location</h2>
+    <p class="section-sub center">Currently based out of Gulshan-e-Iqbal — delivering fresh across nearby Karachi neighbourhoods daily.</p>
+
+    <div class="location-wrap">
+      <div class="map-embed">
+        <!-- Replace the q= value with your real shop address/coordinates -->
+        <iframe
+          src="https://www.google.com/maps?q=Gulshan-e-Iqbal Homeland Apartments, Block 13-C Block 13 C Gulshan-e-Iqbal, Karachi, 74300, Pakistan,Karachi&output=embed"
+          width="100%" height="100%" style="border:0;" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Yousuf Dairy Location">
+        </iframe>
+      </div>
+      <div class="location-info">
+        <h3>Delivery Areas</h3>
+        <ul>
+          <li>Gulshan-e-Iqbal</li>
+          <li>Bhadurabad</li>
+          <li>Malir</li>
+          <li>PECHS</li>
+          <li>DHA &amp; Clifton</li>
+        </ul>
+        <h3>Timing</h3>
+        <p>7:00 AM – 9:00 PM Daily<br>Fresh delivery slot: before 8:00 AM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="section cta-band" id="contact">
+  <div class="container cta-inner">
+    <div>
+      <h2>Order your fresh milk today</h2>
+      <p>Cart bhar lein ya seedha WhatsApp pe message karein — hum turant confirm karte hain.</p>
+    </div>
+    <a href="#" class="btn btn-whatsapp btn-lg" id="ctaWhatsapp">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.868-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.892.526 3.66 1.44 5.167L2 22l4.963-1.404A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12.001 2zm0 18.03a8.01 8.01 0 01-4.312-1.257l-.309-.184-3.104.878.83-3.09-.201-.318A8.01 8.01 0 1120.01 12a8.02 8.02 0 01-8.009 8.03z"/></svg>
+      Chat on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-text light">Yousuf <em>Dairy</em></span>
+      <p>Khaalis doodh, makhan aur dahi — seedha aapke darwaze tak. Delivering fresh across Karachi, every morning.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/yousufbega/?hl=en" aria-label="Instagram"><i class="fa-brands fa-instagram fa-flip-horizontal" style="color: rgb(255, 79, 169);"></i></a>
+        <a href="https://www.facebook.com/muhammad.yousuf.90537" aria-label="Facebook"><i class="fa-brands fa-facebook" style="color: rgb(34, 114, 178);"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#products">Products</a>
+      <a href="#why">Why Us</a>
+      <a href="#location">Location</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>WhatsApp: +92 3408744011</p>
+      <p>Gulshan-e-Iqbal, Karachi</p>
+      <p>7am – 9pm Daily</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Yousuf Dairy. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="#" class="whatsapp-float" id="floatWhatsapp" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.868-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.892.526 3.66 1.44 5.167L2 22l4.963-1.404A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12.001 2zm0 18.03a8.01 8.01 0 01-4.312-1.257l-.309-.184-3.104.878.83-3.09-.201-.318A8.01 8.01 0 1120.01 12a8.02 8.02 0 01-8.009 8.03z"/></svg>
+</a>
+
+<!-- ================= QUICK VIEW MODAL ================= -->
+<div class="quickview-overlay" id="quickviewOverlay"></div>
+<div class="quickview" id="quickview" aria-hidden="true">
+  <!-- CHANGED: qvImg shows the real product photo when data-img is set;
+       qvEmoji stays as a fallback icon if no photo is available yet -->
+  <div class="qv-visual" id="qvVisual">
+    <img id="qvImg" alt="" style="display:none;">
+    <span id="qvEmoji"></span>
+  </div>
+  <div class="qv-panel">
+    <button class="qv-close" id="qvClose" aria-label="Close">✕</button>
+    <p class="qv-price" id="qvPrice"></p>
+    <p class="qv-unit" id="qvUnit"></p>
+    <p class="qv-desc" id="qvDesc"></p>
+
+    <label class="qv-label" for="qvNote">Special Instructions</label>
+    <textarea class="qv-note" id="qvNote" maxlength="500" placeholder="e.g. bottle seal check karke dein"></textarea>
+    <span class="qv-note-count" id="qvNoteCount">0/500</span>
+
+    <div class="qv-footer">
+      <div class="qv-qty-row">
+        <span>Quantity</span>
+        <div class="qty-control">
+          <button class="qty-btn" id="qvDec">−</button>
+          <span class="qty-value" id="qvQty">1</span>
+          <button class="qty-btn" id="qvInc">+</button>
+        </div>
+      </div>
+      <button class="btn btn-navy btn-block" id="qvAddBtn">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty" id="cartEmpty">Cart khaali hai — kuch product add karein 🛒</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <strong id="cartTotal">Rs. 0</strong>
+    </div>
+    <button class="btn btn-whatsapp btn-block" id="checkoutBtn">Checkout on WhatsApp</button>
+  </div>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+/* =========================================================
+   YOUSUF DAIRY — STYLESHEET
+========================================================= */
+
+:root {
+  --bg: #F7F2E7;
+  --card: #FFFFFF;
+  --ink: #23201A;
+  --ink-soft: #6b6255;
+  --navy: #1F3B4D;
+  --navy-dark: #142833;
+  --gold: #D9A441;
+  --gold-dark: #B7862A;
+  --sage: #6E8B6B;
+  --border: #E7DFCB;
+  --whatsapp: #25D366;
+  --whatsapp-dark: #1DA851;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Work Sans", sans-serif;
+
+  --container: 1200px;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; color: var(--ink); }
+
+.center { text-align: center; }
+
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 12px; }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  font-family: var(--font-body); font-weight: 600; font-size: 15px;
+  padding: 12px 22px; border-radius: 999px; border: 2px solid transparent;
+  cursor: pointer; transition: transform .15s ease, background .15s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-block { width: 100%; }
+.btn-lg { padding: 15px 30px; font-size: 16px; }
+.btn-whatsapp { background: var(--whatsapp); color: #fff; box-shadow: 0 6px 18px rgba(37,211,102,.28); }
+.btn-whatsapp:hover { background: var(--whatsapp-dark); }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-navy:hover { background: var(--navy-dark); }
+
+/* =========================================================
+   HEADER
+========================================================= */
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(247,242,231,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 0; }
+.logo { display: flex; align-items: center; gap: 10px; }
+
+/* CHANGED: styles for the <img> logo (replaces the old inline SVG) */
+.logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 50%;   /* remove this line if your logo isn't meant to be circular */
+  flex-shrink: 0;
+}
+
+.logo-text { font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--ink); }
+.logo-text em { font-style: italic; color: var(--gold-dark); font-weight: 500; }
+.logo-text.light { color: var(--bg); }
+.logo-text.light em { color: var(--gold); }
+
+.main-nav { display: flex; gap: 28px; }
+.main-nav a { font-size: 15px; font-weight: 500; color: var(--ink-soft); transition: color .15s ease; }
+.main-nav a:hover { color: var(--navy); }
+
+.header-actions { display: flex; align-items: center; gap: 14px; }
+
+.cart-trigger { position: relative; background: none; border: none; cursor: pointer; color: var(--ink); padding: 6px; }
+.cart-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--gold); color: var(--navy-dark);
+  font-size: 10.5px; font-weight: 800; min-width: 17px; height: 17px;
+  border-radius: 999px; display: flex; align-items: center; justify-content: center;
+  padding: 0 3px;
+}
+
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+.nav-toggle span { width: 24px; height: 2px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
+
+.mobile-nav { display: none; flex-direction: column; padding: 4px 24px 16px; border-top: 1px solid var(--border); }
+.mobile-nav a { padding: 12px 0; border-bottom: 1px solid var(--border); font-weight: 500; }
+.mobile-nav.open { display: flex; }
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero { padding: 64px 0 0; overflow: hidden; }
+.hero-inner { max-width: 720px; margin: 0 auto 44px; padding-left: 24px; padding-right: 24px; }
+.hero h1 { font-size: clamp(32px, 5vw, 50px); margin: 6px 0 18px; letter-spacing: -.01em; }
+.hero h1 .ink { color: var(--sage); font-style: italic; }
+.hero-sub { font-size: 17px; color: var(--ink-soft); margin: 0 auto 28px; max-width: 520px; }
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+.stats-bar { background: var(--navy); }
+.stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); padding: 34px 24px; }
+.stat { text-align: center; color: #fff; }
+.stat strong { display: block; font-family: var(--font-display); font-size: 28px; color: var(--gold); margin-bottom: 4px; }
+.stat span { font-size: 13px; color: #c9d3d8; }
+
+/* =========================================================
+   SECTIONS shared
+========================================================= */
+.section { padding: 78px 0; }
+.section-alt { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-title { font-size: clamp(26px, 3.2vw, 34px); }
+.section-sub { color: var(--ink-soft); max-width: 560px; margin: 0 auto 20px; font-size: 15.5px; }
+
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 30px; gap: 20px; }
+
+/* =========================================================
+   PRODUCT CAROUSEL
+========================================================= */
+.carousel-arrows { display: flex; gap: 8px; }
+.arrow-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--border); background: var(--card);
+  font-size: 20px; cursor: pointer; color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s ease, color .15s ease;
+}
+.arrow-btn:hover { background: var(--navy); color: #fff; }
+
+/* scroll-snap-type makes cards "snap" into place on swipe/scroll,
+   both on the arrow buttons (script.js) and on mobile touch swipe.
+   scrollbar-width/::-webkit-scrollbar hide the native scrollbar
+   since the arrow buttons + swipe are the intended controls. */
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar { display: none; }
+
+.product-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.product-card:hover { box-shadow: 0 14px 30px rgba(31,59,77,.1); transform: translateY(-3px); }
+
+.card-media {
+  height: 260px;
+  background: linear-gradient(160deg, #EFE6CE, #F7F2E7);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: filter .15s ease;
+  overflow: hidden; /* CHANGED: clips the image to the rounded card corners */
+}
+.card-media:hover { filter: brightness(0.96); }
+.card-media span { font-size: 52px; }
+
+/* CHANGED: real product photos fill the media box on every screen size.
+   object-fit: cover keeps the photo from stretching or squashing —
+   it crops instead, same as a background-image would. Because the
+   height is set here (not with vw/vh units), this behaves identically
+   on phones, tablets and laptops without needing extra media queries. */
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body { padding: 18px 20px 22px; }
+.card-body h3 { font-size: 19px; margin-bottom: 2px; }
+.card-local { font-size: 12.5px; color: var(--ink-soft); font-style: italic; margin-bottom: 10px; }
+.card-price { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+.card-price span { font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--ink-soft); }
+
+.qty-control {
+  display: flex; align-items: center; justify-content: space-between;
+  border: 1.5px solid var(--border); border-radius: 999px; padding: 5px 8px;
+}
+.qty-btn {
+  width: 30px; height: 30px; border-radius: 50%; border: none;
+  background: var(--bg); color: var(--ink); font-size: 18px; cursor: pointer; line-height: 1;
+  transition: background .15s ease, color .15s ease;
+}
+.qty-btn:hover { background: var(--gold); color: #fff; }
+.qty-value { font-weight: 700; font-size: 15px; }
+
+/* =========================================================
+   WHY CHOOSE US
+========================================================= */
+.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
+.why-num { display: inline-block; font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--gold-dark); border: 1.5px solid var(--gold); border-radius: 999px; padding: 4px 12px; margin-bottom: 16px; }
+.why-item h3 { font-size: 18.5px; margin-bottom: 8px; }
+.why-item p { font-size: 14.5px; color: var(--ink-soft); }
+
+/* =========================================================
+   LOCATION / MAP
+========================================================= */
+.location-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 26px; margin-top: 40px; align-items: stretch; }
+.map-embed { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); min-height: 320px; }
+.location-info { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; }
+.location-info h3 { font-size: 17px; margin-bottom: 12px; }
+.location-info h3:not(:first-child) { margin-top: 22px; }
+.location-info ul li { font-size: 14.5px; color: var(--ink-soft); padding: 5px 0; border-bottom: 1px dashed var(--border); }
+.location-info p { font-size: 14.5px; color: var(--ink-soft); }
+
+/* =========================================================
+   CHANGED: REVIEWS SECTION (new)
+========================================================= */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+.review-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+.review-card p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.review-card cite {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-dark);
+  font-style: normal;
+}
+
+/* =========================================================
+   CTA BAND
+========================================================= */
+.cta-band { background: var(--navy); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.cta-band h2 { color: #fff; font-size: clamp(24px, 3vw, 32px); margin-bottom: 8px; }
+.cta-band p { color: #c9d3d8; }
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer { background: var(--navy-dark); color: #dbe3e6; padding-top: 60px; }
+.footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+.footer-brand p { font-size: 14px; color: #b7c2c7; margin: 14px 0 18px; max-width: 300px; }
+.footer-socials { display: flex; gap: 10px; }
+.footer-socials a { width: 34px; height: 34px; border-radius: 50%;  display: flex; align-items: center; justify-content: center; font-size: 25px; font-weight: 700; transition: background .15s ease; }
+.footer-socials a:hover { background: #ffffff22; box-shadow: 0 0 0 2px #ffffff22;}
+.footer-col h4 { color: #fff; font-size: 15px; margin-bottom: 16px; }
+.footer-col a, .footer-col p { display: block; font-size: 14px; color: #b7c2c7; margin-bottom: 10px; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid #ffffff1c; padding: 20px 24px; text-align: center; font-size: 13px; color: #8fa0a6; }
+
+/* =========================================================
+   FLOATING WHATSAPP
+========================================================= */
+.whatsapp-float {
+  position: fixed; bottom: 24px; right: 24px; width: 58px; height: 58px;
+  background: var(--whatsapp); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  box-shadow: 0 8px 24px rgba(37,211,102,.4); z-index: 200;
+  animation: pulseWa 2.4s ease-in-out infinite;
+}
+@keyframes pulseWa {
+  0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 8px 24px rgba(37,211,102,.7), 0 0 0 8px rgba(37,211,102,.12); }
+}
+
+/* =========================================================
+   QUICK VIEW MODAL (click product image to open)
+========================================================= */
+.quickview-overlay {
+  position: fixed; inset: 0; background: rgba(20,25,20,.5);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 400;
+}
+.quickview-overlay.open { opacity: 1; pointer-events: auto; }
+
+.quickview {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -48%) scale(.97);
+  width: 880px; max-width: 92vw; max-height: 86vh;
+  background: var(--card); border-radius: 20px;
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  overflow: hidden; z-index: 401;
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+  box-shadow: 0 30px 70px rgba(20,25,20,.3);
+}
+.quickview.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+
+.qv-visual {
+  background: linear-gradient(160deg, var(--navy), var(--navy-dark));
+  display: flex; align-items: center; justify-content: center;
+  min-height: 260px;
+  overflow: hidden; /* CHANGED: clip photo to the rounded modal corners */
+}
+.qv-visual span { font-size: 140px; }
+/* CHANGED: product photo fills the whole left panel, cropping via
+   object-fit: cover so it never stretches — same technique as the
+   card thumbnails, works the same on phone/tablet/laptop. */
+.qv-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.qv-panel { padding: 34px 36px; position: relative; overflow-y: auto; }
+.qv-close {
+  position: absolute; top: 22px; right: 24px;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: none; background: var(--bg); cursor: pointer; font-size: 15px; color: var(--ink);
+}
+.qv-price { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--navy); margin-bottom: 2px; padding-right: 40px; }
+.qv-unit { font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; }
+.qv-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.6; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 20px; }
+
+.qv-label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
+.qv-note {
+  width: 100%; min-height: 90px; resize: vertical;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 12px 14px; font-family: var(--font-body); font-size: 14px;
+  color: var(--ink); margin-bottom: 4px;
+}
+.qv-note:focus { outline: none; border-color: var(--navy); }
+.qv-note-count { display: block; text-align: right; font-size: 11.5px; color: var(--ink-soft); margin-bottom: 24px; }
+
+.qv-footer { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 6px; }
+.qv-qty-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; font-size: 14px; font-weight: 600; }
+.qv-qty-row .qty-control { width: 130px; }
+
+@media (max-width: 767px) {
+  .quickview { grid-template-columns: 1fr; max-height: 90vh; }
+  .qv-visual { min-height: 160px; }
+  .qv-visual span { font-size: 90px; }
+  .qv-panel { padding: 26px 22px; }
+}
+
+/* =========================================================
+   CART DRAWER
+   translateX(100%) hides the drawer just off-screen to the
+   right; .open removes the transform so it slides into view.
+   The dark .cart-overlay behind it fades in at the same time
+   and doubles as a click-to-close backdrop.
+========================================================= */
+.cart-overlay {
+  position: fixed; inset: 0; background: rgba(20,25,20,.45);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 300;
+}
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+
+.cart-drawer {
+  position: fixed; top: 0; right: 0; height: 100%; width: 380px; max-width: 92vw;
+  background: var(--bg); z-index: 301;
+  transform: translateX(100%); transition: transform .3s ease;
+  display: flex; flex-direction: column;
+  box-shadow: -12px 0 30px rgba(0,0,0,.15);
+}
+.cart-drawer.open { transform: translateX(0); }
+
+.cart-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-bottom: 1px solid var(--border); }
+.cart-header h3 { font-size: 20px; }
+.cart-close { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--ink); }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 12px 22px; }
+.cart-empty { color: var(--ink-soft); font-size: 14.5px; text-align: center; padding: 40px 0; }
+
+.cart-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.cart-item-emoji { font-size: 26px; }
+.cart-item-info { flex: 1; }
+.cart-item-info h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 2px; }
+.cart-item-info span { font-size: 12.5px; color: var(--ink-soft); }
+.cart-item-qty { display: flex; align-items: center; gap: 8px; }
+.cart-item-qty button { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); cursor: pointer; font-size: 14px; line-height: 1; }
+.cart-item-remove { background: none; border: none; color: #b23b3b; cursor: pointer; font-size: 15px; margin-left: 6px; }
+
+.cart-footer { padding: 18px 22px 22px; border-top: 1px solid var(--border); }
+.cart-total-row { display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 14px; }
+.cart-total-row strong { font-family: var(--font-display); color: var(--navy); }
+
+/* =========================================================
+   RESPONSIVE
+   Mobile  (<768px)          -> hamburger nav
+   Tablet  (768px - 1023px)  -> full nav, no hamburger
+   Laptop+ (>=1024px)        -> full nav, no hamburger
+
+   Only one breakpoint (767px) actually controls the nav itself
+   (.main-nav / .nav-toggle) — below it the hamburger shows,
+   above it the full nav shows. The 768-1023px block below only
+   adjusts spacing/columns for tablet, it doesn't touch the nav.
+========================================================= */
+@media (max-width: 767px) {
+  .main-nav { display: none; }
+  .nav-toggle { display: flex; }
+  .header-cta { display: none; }
+
+  .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .why-grid { grid-template-columns: 1fr; }
+  .location-wrap { grid-template-columns: 1fr; }
+  .map-embed { min-height: 240px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .cta-inner { text-align: center; justify-content: center; }
+  .product-card { flex: 0 0 220px; }
+  .logo-img { width: 34px; height: 34px; } /* CHANGED: smaller logo on phones */
+  .review-grid { grid-template-columns: 1fr; } /* CHANGED: stack review cards on phones */
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .location-wrap { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .header-cta span { display: none; }
+}
