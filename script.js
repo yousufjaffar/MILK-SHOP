@@ -16,7 +16,7 @@
    number. Format: country code + number, no + sign, no spaces.
    Example: "923001234567" for +92 300 1234567
 ------------------------------------------------------- */
-const WHATSAPP_NUMBER = "923408744011"; // <-- REPLACE with your WhatsApp business number
+const WHATSAPP_NUMBER = "923001234567"; // <-- REPLACE with your WhatsApp business number
 
 // Auto-fills the copyright year in the footer so you never
 // have to update it manually.
@@ -89,9 +89,15 @@ document.getElementById("arrowRight").addEventListener("click", () => {
    -----------------------------------------------------------
    `cart` is a plain object keyed by product id, e.g.:
    {
-     "cow-milk":  { name, emoji, unit, price, qty, note },
-     "butter":    { name, emoji, unit, price, qty }
+     "cow-milk::1 Litre": { name, emoji, unit, price, qty },
+     "butter":            { name, emoji, unit, price, qty }
    }
+   CHANGED: for products with size options (Cow/Buffalo/Goat Milk,
+   Bread) the key is "id::size" so each size sits in the cart as
+   its own line item — e.g. 1 Pao of Cow Milk and 1 Litre of Cow
+   Milk can both be in the cart at once. Products without size
+   options just use the plain id as before ("butter", not
+   "butter::something").
    `note` is optional — only present if the item was added
    through the Quick View modal with special instructions.
 ========================================================= */
@@ -185,9 +191,25 @@ cartItemsEl.addEventListener("click", e => {
 // Keeps the quantity shown on the product card (in the
 // carousel) in sync whenever the cart changes from the drawer
 // or the Quick View modal, so the two views never disagree.
-function syncCardQty(id, qty) {
+//
+// CHANGED: cart keys can now be either a plain id ("butter") or a
+// compound "id::size" key ("bread::Small") for products that have
+// size options. This only updates the number on the card if the
+// card's CURRENTLY SELECTED size matches the size in the key —
+// otherwise you'd see the wrong size's quantity on screen.
+function syncCardQty(cartKey, qty) {
+  const [id, size] = cartKey.split("::");
   const card = document.querySelector(`.product-card[data-id="${id}"]`);
-  if (card) card.querySelector(".qty-value").textContent = qty;
+  if (!card) return;
+
+  const activeSizeBtn = card.querySelector(".size-select .size-btn.active");
+  const cardActiveSize = activeSizeBtn ? activeSizeBtn.dataset.size : undefined;
+
+  // No size in the key (plain id) -> product has no size options, always update.
+  // Size in the key -> only update if it matches what's currently selected.
+  if (size === undefined || cardActiveSize === size) {
+    card.querySelector(".qty-value").textContent = qty;
+  }
 }
 
 
@@ -210,10 +232,32 @@ const qvNote = document.getElementById("qvNote");
 const qvNoteCount = document.getElementById("qvNoteCount");
 const qvQty = document.getElementById("qvQty");
 const qvAddBtn = document.getElementById("qvAddBtn");
+const qvSizeSelect = document.getElementById("qvSizeSelect"); // CHANGED: size buttons container
 
 // Holds the product currently shown in the modal, so the
 // "Add to Cart" button knows what to save. Reset to null on close.
 let qvCurrent = null;
+
+// CHANGED: reads whichever size button is active inside the modal
+// (or falls back to the card's plain data-unit/data-price if the
+// product has no size options at all).
+function getQvActiveSize(card) {
+  const activeBtn = qvSizeSelect.querySelector(".size-btn.active");
+  if (activeBtn) {
+    return { unit: activeBtn.dataset.size, price: Number(activeBtn.dataset.price) };
+  }
+  return { unit: card.dataset.unit, price: Number(card.dataset.price) };
+}
+
+// CHANGED: refreshes the price display + quantity stepper to match
+// whichever size is currently selected in the modal.
+function refreshQvForSize(card) {
+  const { unit, price } = getQvActiveSize(card);
+  const cartKey = qvSizeSelect.querySelector(".size-btn.active") ? `${card.dataset.id}::${unit}` : card.dataset.id;
+  qvPrice.textContent = `Rs. ${price}`;
+  qvUnit.textContent = `per ${unit}`;
+  qvQty.textContent = cart[cartKey] ? cart[cartKey].qty : 1;
+}
 
 function openQuickview(card) {
   // Pull all product info straight from the card's data-* attributes,
@@ -221,12 +265,10 @@ function openQuickview(card) {
   const id = card.dataset.id;
   const name = card.dataset.name;
   const emoji = card.dataset.emoji;
-  const unit = card.dataset.unit;
-  const price = Number(card.dataset.price);
   const desc = card.dataset.desc || "";
   const img = card.dataset.img || ""; // CHANGED: optional real product photo
 
-  qvCurrent = { id, name, emoji, unit, price, card };
+  qvCurrent = { id, name, emoji, card };
 
   // CHANGED: show the real photo if data-img is set on the card,
   // otherwise fall back to the emoji icon (so nothing looks broken
@@ -242,14 +284,35 @@ function openQuickview(card) {
     qvEmoji.textContent = emoji;
   }
 
-  qvPrice.textContent = `Rs. ${price}`;
-  qvUnit.textContent = `per ${unit}`;
+  // CHANGED: rebuild the size selector from the card's own size
+  // buttons (if it has any). Cloning the labels/values means the
+  // sizes and prices only ever need to be edited in one place —
+  // the product card in index.html.
+  const cardSizeButtons = card.querySelectorAll(".size-select .size-btn");
+  qvSizeSelect.innerHTML = "";
+  if (cardSizeButtons.length) {
+    qvSizeSelect.style.display = "flex";
+    cardSizeButtons.forEach(srcBtn => {
+      const btn = document.createElement("button");
+      btn.className = "size-btn" + (srcBtn.classList.contains("active") ? " active" : "");
+      btn.dataset.size = srcBtn.dataset.size;
+      btn.dataset.price = srcBtn.dataset.price;
+      btn.innerHTML = srcBtn.innerHTML;
+      btn.addEventListener("click", () => {
+        qvSizeSelect.querySelectorAll(".size-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        refreshQvForSize(card);
+      });
+      qvSizeSelect.appendChild(btn);
+    });
+  } else {
+    qvSizeSelect.style.display = "none";
+  }
+
   qvDesc.textContent = desc;
   qvNote.value = "";
   qvNoteCount.textContent = "0/500";
-  // If this item is already in the cart, start the quantity
-  // stepper at the existing quantity instead of resetting to 1.
-  qvQty.textContent = cart[id] ? cart[id].qty : 1;
+  refreshQvForSize(card); // sets price, unit, and starting quantity together
 
   qvOverlay.classList.add("open");
   qv.classList.add("open");
@@ -286,13 +349,19 @@ document.getElementById("qvDec").addEventListener("click", () => {
 
 qvAddBtn.addEventListener("click", () => {
   if (!qvCurrent) return;
-  const { id, name, emoji, unit, price } = qvCurrent;
+  const { id, name, emoji, card } = qvCurrent;
+  const { unit, price } = getQvActiveSize(card);
   const qty = Number(qvQty.textContent);
+
+  // CHANGED: compound key when a size is selected, so different
+  // sizes of the same product live as separate cart lines.
+  const activeSizeBtn = qvSizeSelect.querySelector(".size-btn.active");
+  const cartKey = activeSizeBtn ? `${id}::${unit}` : id;
 
   // Save (or overwrite) this product in the cart, including
   // the special instructions note if the user typed one.
-  cart[id] = { name, emoji, unit, price, qty, note: qvNote.value.trim() };
-  syncCardQty(id, qty);
+  cart[cartKey] = { name, emoji, unit, price, qty, note: qvNote.value.trim() };
+  syncCardQty(cartKey, qty);
   updateCartUI();
   closeQuickview();
   openCart(); // show the cart drawer immediately so the add feels confirmed
@@ -305,18 +374,60 @@ qvAddBtn.addEventListener("click", () => {
    to the ones inside the Quick View modal or the cart drawer).
    All three update the same `cart` object, so they always
    stay in sync with each other.
+
+   CHANGED: products can now optionally have a .size-select with
+   several .size-btn options (Cow/Buffalo/Goat Milk, Bread). When
+   present, the ACTIVE size button decides the unit + price, and
+   the cart key becomes "id::size" so different sizes of the same
+   product can sit in the cart at the same time as separate lines.
+   Products without a .size-select behave exactly as before.
 ------------------------------------------------------- */
 document.querySelectorAll(".product-card").forEach(card => {
   const id = card.dataset.id;
   const name = card.dataset.name;
   const emoji = card.dataset.emoji;
-  const unit = card.dataset.unit;
-  const price = Number(card.dataset.price);
   const qtyValue = card.querySelector(".qty-value");
+  const sizeButtons = card.querySelectorAll(".size-select .size-btn");
+
+  // Returns the currently selected unit/price/cartKey for this card,
+  // whether it has size options or just a single fixed price.
+  function getActive() {
+    const activeBtn = card.querySelector(".size-select .size-btn.active");
+    if (activeBtn) {
+      return {
+        unit: activeBtn.dataset.size,
+        price: Number(activeBtn.dataset.price),
+        cartKey: `${id}::${activeBtn.dataset.size}`
+      };
+    }
+    return {
+      unit: card.dataset.unit,
+      price: Number(card.dataset.price),
+      cartKey: id
+    };
+  }
+
+  // Updates the number shown on the card to match whatever's
+  // already in the cart for the currently selected size.
+  function refreshQtyDisplay() {
+    const { cartKey } = getActive();
+    qtyValue.textContent = cart[cartKey] ? cart[cartKey].qty : 0;
+  }
+
+  // Switching size shows that size's own quantity (not the
+  // previous size's), so the number on screen is never misleading.
+  sizeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      sizeButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      refreshQtyDisplay();
+    });
+  });
 
   card.querySelectorAll(".qty-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      let qty = cart[id] ? cart[id].qty : 0;
+      const { unit, price, cartKey } = getActive();
+      let qty = cart[cartKey] ? cart[cartKey].qty : 0;
 
       if (btn.dataset.action === "inc") qty++;
       if (btn.dataset.action === "dec") qty = Math.max(0, qty - 1);
@@ -326,9 +437,9 @@ document.querySelectorAll(".product-card").forEach(card => {
       // At 0 the item shouldn't exist in the cart at all —
       // this keeps Object.keys(cart) accurate for the badge count.
       if (qty === 0) {
-        delete cart[id];
+        delete cart[cartKey];
       } else {
-        cart[id] = { name, emoji, unit, price, qty };
+        cart[cartKey] = { name, emoji, unit, price, qty };
       }
       updateCartUI();
     });
@@ -366,7 +477,7 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
     "Mujhe yeh order karna hai:\n\n" +
     lines.join("\n") +
     `\n\nTotal: Rs. ${total}\n\n` +
-    "📍 Delivery Address: \n" +
+    "📍 Delivery Address: [Apna address yahan likhein]\n" +
     "⏰ Preferred Time: Subah 8 baje se pehle\n\n" +
     "Shukriya!";
 

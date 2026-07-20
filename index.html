@@ -61,6 +61,10 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
+  <!-- CHANGED: watermark now a direct child of .hero (not .hero-inner)
+       so it can cover the FULL section width, not just the narrow
+       max-width text column -->
+  <img src="logo.png" alt="" class="hero-logo-watermark" aria-hidden="true">
   <div class="container hero-inner">
     <p class="eyebrow center">Farm Fresh · Karachi</p>
     <h1 class="center">Khaalis Doodh, Makhan &amp;<br><span class="ink">Dahi</span> — Seedha Aap Tak</h1>
@@ -117,6 +121,12 @@
           <h3>Cow Milk</h3>
           <p class="card-local">Gaay ka Doodh</p>
           <p class="card-price">Rs. 330<span>/Litre</span></p>
+          <!-- CHANGED: size options — each button carries its own price -->
+          <div class="size-select">
+            <button class="size-btn" data-size="Pao" data-price="90">Pao<span>250ml</span></button>
+            <button class="size-btn" data-size="Adha Litre" data-price="170">Adha Litre<span>500ml</span></button>
+            <button class="size-btn active" data-size="1 Litre" data-price="330">1 Litre<span>1000ml</span></button>
+          </div>
           <div class="qty-control">
             <button class="qty-btn" data-action="dec">−</button>
             <span class="qty-value">0</span>
@@ -131,6 +141,12 @@
           <h3>Buffalo Milk</h3>
           <p class="card-local">Bhains ka Doodh</p>
           <p class="card-price">Rs. 390<span>/Litre</span></p>
+          <!-- CHANGED: size options — each button carries its own price -->
+          <div class="size-select">
+            <button class="size-btn" data-size="Pao" data-price="100">Pao<span>250ml</span></button>
+            <button class="size-btn" data-size="Adha Litre" data-price="195">Adha Litre<span>500ml</span></button>
+            <button class="size-btn active" data-size="1 Litre" data-price="390">1 Litre<span>1000ml</span></button>
+          </div>
           <div class="qty-control">
             <button class="qty-btn" data-action="dec">−</button>
             <span class="qty-value">0</span>
@@ -145,6 +161,12 @@
           <h3>Goat Milk</h3>
           <p class="card-local">Bakri ka Doodh</p>
           <p class="card-price">Rs. 480<span>/Litre</span></p>
+          <!-- CHANGED: size options — each button carries its own price -->
+          <div class="size-select">
+            <button class="size-btn" data-size="Pao" data-price="125">Pao<span>250ml</span></button>
+            <button class="size-btn" data-size="Adha Litre" data-price="245">Adha Litre<span>500ml</span></button>
+            <button class="size-btn active" data-size="1 Litre" data-price="480">1 Litre<span>1000ml</span></button>
+          </div>
           <div class="qty-control">
             <button class="qty-btn" data-action="dec">−</button>
             <span class="qty-value">0</span>
@@ -209,12 +231,18 @@
         </div>
       </article>
 
-      <article class="product-card" data-id="bread" data-name="Bread" data-emoji="🍞" data-unit="250g" data-price="650" data-img="bread.png" data-desc="Freshly baked and soft — perfect for breakfast or snacks.">
+      <article class="product-card" data-id="bread" data-name="Bread" data-emoji="🍞" data-unit="250g" data-price="130" data-img="bread.png" data-desc="Freshly baked and soft — perfect for breakfast or snacks.">
         <div class="card-media" data-open-quickview><img src="bread.png" alt="Bread"></div>
         <div class="card-body">
           <h3>Bread</h3>
           <p class="card-local">Fresh Bread</p>
           <p class="card-price">Rs. 130<span>/packet</span></p>
+          <!-- CHANGED: size options — each button carries its own price -->
+          <div class="size-select">
+            <button class="size-btn" data-size="Small" data-price="90">Small<span>200g</span></button>
+            <button class="size-btn active" data-size="Medium" data-price="130">Medium<span>350g</span></button>
+            <button class="size-btn" data-size="Large" data-price="180">Large<span>500g</span></button>
+          </div>
           <div class="qty-control">
             <button class="qty-btn" data-action="dec">−</button>
             <span class="qty-value">0</span>
@@ -376,6 +404,10 @@
     <p class="qv-price" id="qvPrice"></p>
     <p class="qv-unit" id="qvUnit"></p>
     <p class="qv-desc" id="qvDesc"></p>
+
+    <!-- CHANGED: filled in by script.js when the product has size options
+         (Cow/Buffalo/Goat Milk, Bread). Hidden for products without them. -->
+    <div class="qv-size-select" id="qvSizeSelect" style="display:none;"></div>
 
     <label class="qv-label" for="qvNote">Special Instructions</label>
     <textarea class="qv-note" id="qvNote" maxlength="500" placeholder="e.g. bottle seal check karke dein"></textarea>

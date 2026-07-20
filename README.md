@@ -177,10 +177,45 @@ ki wajah se. Agar kisi product ki photo abhi nahi hai, to `data-img`
 attribute hata dein — emoji fallback wapas dikhne lag jayega, kuch
 tootega nahi.
 
-**Card image ka size change karna** — `style.css` mein `.card-media`
-rule dhoondein, `height: 130px` ki value badal dein (ye height sab
-screen sizes par same rehti hai, isliye ek jagah change karne se
-sab jagah update ho jata hai).
+### Size options (naya system) — CHANGED
+
+Cow Milk, Buffalo Milk, Goat Milk aur Bread — in charon mein ab
+**size options** hain (Pao / Adha Litre / 1 Litre for milk, aur
+Small / Medium / Large for Bread), har size ki apni price ke sath.
+Customer jo size select karega, cart aur WhatsApp message usi price
+aur naam ke sath jayega.
+
+**Naya size add/edit karna** — product card ke andar `.size-select`
+block dhoondein:
+
+```html
+<div class="size-select">
+  <button class="size-btn" data-size="Pao" data-price="90">Pao<span>250ml</span></button>
+  <button class="size-btn" data-size="Adha Litre" data-price="170">Adha Litre<span>500ml</span></button>
+  <button class="size-btn active" data-size="1 Litre" data-price="330">1 Litre<span>1000ml</span></button>
+</div>
+```
+
+- `data-size` — cart aur WhatsApp message mein yehi naam dikhega
+- `data-price` — us size ki price (number only)
+- `<span>` ke andar wala text chhota subtitle hai (jaise "250ml") — optional hai, hata bhi sakte hain
+- `active` class jis button par ho, wahi size default selected hota hai jab page load ho
+
+Naya size add karna ho, bas ek `<button class="size-btn">` copy
+karke naya `data-size`/`data-price`/text likh dein — kuch aur
+edit karne ki zaroorat nahi.
+
+**Kisi product se size options hatani ho** (wapas single price par
+le jana ho) — bas `.size-select` wala poora `<div>` delete kar dein.
+Product khud-ba-khud purane single-price system par chala jayega
+(jo `data-unit`/`data-price` attributes se aata hai).
+
+**Quick View modal mein size** — agar product ke paas size options
+hain, modal khulte hi wahi size buttons khud-ba-khud modal ke andar
+bhi dikh jate hain (alag se kuch set karne ki zaroorat nahi, script.js
+khud card se copy kar leta hai).
+
+
 
 ---
 

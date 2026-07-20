@@ -101,14 +101,53 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
 /* =========================================================
    HERO
 ========================================================= */
-.hero { padding: 64px 0 0; overflow: hidden; }
+.hero { padding: 64px 0 0; overflow: hidden; position: relative; }
 .hero-inner { max-width: 720px; margin: 0 auto 44px; padding-left: 24px; padding-right: 24px; }
+
+/* CHANGED: logo now covers the ENTIRE hero section as a full banner
+   background, sitting behind all the text/buttons. inset:0 makes the
+   img stretch to fill .hero exactly (top/right/bottom/left all 0),
+   and object-fit: cover crops it so it fills the box completely
+   without distorting — same technique used for the product photos. */
+.hero-logo-watermark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.14;
+  z-index: 0;
+  pointer-events: none; /* clicks pass through to the buttons/text above it */
+}
+
+/* CHANGED: a soft navy-tinted overlay between the banner image and the
+   text, so the text stays readable no matter how busy the photo is
+   underneath. Sits above the image (z-index 0 too, but comes after it
+   in the HTML so it paints on top) and below the actual text (z-index 1). */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(247,242,231,.75), rgba(247,242,231,.92));
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Everything else in the hero needs to sit above the watermark + overlay */
+.hero-inner > *:not(.hero-logo-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
 .hero h1 { font-size: clamp(32px, 5vw, 50px); margin: 6px 0 18px; letter-spacing: -.01em; }
 .hero h1 .ink { color: var(--sage); font-style: italic; }
 .hero-sub { font-size: 17px; color: var(--ink-soft); margin: 0 auto 28px; max-width: 520px; }
 .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-.stats-bar { background: var(--navy); }
+/* CHANGED: position + z-index needed so the stats bar paints above
+   the full-cover hero watermark/overlay behind it (both live inside
+   .hero too) instead of getting faded by them. */
+.stats-bar { background: var(--navy); position: relative; z-index: 2; }
 .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); padding: 34px 24px; }
 .stat { text-align: center; color: #fff; }
 .stat strong { display: block; font-family: var(--font-display); font-size: 28px; color: var(--gold); margin-bottom: 4px; }
@@ -190,6 +229,36 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
 .card-local { font-size: 12.5px; color: var(--ink-soft); font-style: italic; margin-bottom: 10px; }
 .card-price { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
 .card-price span { font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--ink-soft); }
+
+/* CHANGED: size option buttons on the product card — clicking one
+   changes the active size, which changes the price used when +/-
+   is pressed. Only present on products that have multiple sizes
+   (Cow/Buffalo/Goat Milk, Bread) — everything else is unaffected. */
+.size-select {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.size-btn {
+  flex: 1;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 4px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-align: center;
+  transition: all .15s ease;
+}
+.size-btn span { display: block; font-size: 10px; font-weight: 500; margin-top: 1px; opacity: .8; }
+.size-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
 
 .qty-control {
   display: flex; align-items: center; justify-content: space-between;
@@ -336,6 +405,21 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
 .qv-unit { font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; }
 .qv-desc { font-size: 15px; color: var(--ink-soft); line-height: 1.6; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 20px; }
 
+/* CHANGED: size buttons inside the Quick View modal — built dynamically
+   in script.js from the product card's own size options, so there's
+   still only one place (the HTML card) where sizes/prices are defined. */
+.qv-size-select {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.qv-size-select .size-btn {
+  flex: 1;
+  padding: 10px 6px;
+  font-size: 13px;
+}
+.qv-size-select .size-btn span { font-size: 11px; }
+
 .qv-label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
 .qv-note {
   width: 100%; min-height: 90px; resize: vertical;
@@ -424,6 +508,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.
   .product-card { flex: 0 0 220px; }
   .logo-img { width: 34px; height: 34px; } /* CHANGED: smaller logo on phones */
   .review-grid { grid-template-columns: 1fr; } /* CHANGED: stack review cards on phones */
+  .hero-logo-watermark { width: 240px; opacity: 0.07; } /* CHANGED: smaller watermark on phones */
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
