@@ -16,7 +16,7 @@
    number. Format: country code + number, no + sign, no spaces.
    Example: "923001234567" for +92 300 1234567
 ------------------------------------------------------- */
-const WHATSAPP_NUMBER = "923001234567"; // <-- REPLACE with your WhatsApp business number
+const WHATSAPP_NUMBER = "923408744011"; // <-- REPLACE with your WhatsApp business number
 
 // Auto-fills the copyright year in the footer so you never
 // have to update it manually.
