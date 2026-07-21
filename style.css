@@ -25,8 +25,20 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+/* CHANGED: fixes the mobile "page shakes / scrolls left-right" bug.
+   If ANY element on the page is even 1px wider than the screen
+   (common with full-bleed banners, flex rows, etc.), mobile browsers
+   let the whole page scroll sideways to reveal it — that's the
+   shakiness. overflow-x: hidden on both html and body clips that
+   extra width instead of letting it create a scrollable area.
+   width: 100% keeps body from ever being asked to size itself past
+   the viewport in the first place. This does not hide or crop any
+   visible content — everything on the page already fits within the
+   viewport width by design (the .container max-width, the hero
+   banner's inset:0, etc.); this only removes the invisible sliver
+   of extra width that was causing the scroll/shake. */
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%; }
 img, svg { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
